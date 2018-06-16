@@ -29,7 +29,7 @@
   <widget class="QPushButton" name="conDbServer">
    <property name="geometry">
     <rect>
-     <x>580</x>
+     <x>590</x>
      <y>20</y>
      <width>200</width>
      <height>22</height>
@@ -492,7 +492,7 @@ p, li { white-space: pre-wrap; }
   <widget class="QPushButton" name="helpButton">
    <property name="geometry">
     <rect>
-     <x>790</x>
+     <x>795</x>
      <y>20</y>
      <width>75</width>
      <height>22</height>
