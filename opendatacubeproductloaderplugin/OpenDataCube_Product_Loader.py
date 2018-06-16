@@ -104,7 +104,7 @@ class OpenDataCubeProductLoader:
         self.dataDisplayDlg.plotData.clicked.connect(self.plotDatasets)
         self.dataDisplayDlg.datasetGeotiff.clicked.connect(self.array2raster)
         self.dataDisplayDlg.loadCoordinates.clicked.connect(self.loadLayerDialog.show)
-        # self.dataDisplayDlg.helpButton.clicked.connect(self.)
+        self.dataDisplayDlg.helpButton.clicked.connect(self.showHelpPage)
 
         self.dataDisplayDlg.selectMapTool=initMapSelectTool(self.dataDisplayDlg.graphicsView)
         self.dataDisplayDlg.ingestedLayer=None
@@ -422,3 +422,6 @@ class OpenDataCubeProductLoader:
                 except:
                     pass 
         return typemap[dtype]
+    def showHelpPage(self):
+        import webbrowser
+        webbrowser.open('https://github.com/ashu6397/OpenDataCube-Product-Loader', new=2) 
