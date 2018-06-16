@@ -57,4 +57,4 @@ Installation with `OSGeo4W`
 #### Plugin
 ~~~~~~
 - Download the latest `release` of the plugin
-- Install the plugin in QGIS using `Plugins | Manage and Install Plugins... | Install from ZIP`
+- Install the plugin in QGIS using `Plugins | Manage and Install Plugins... | Install from ZIP
