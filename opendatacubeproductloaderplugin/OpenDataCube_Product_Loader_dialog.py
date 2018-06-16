@@ -47,6 +47,7 @@ class OpenDataCubeProductLoaderDialog(QtWidgets.QDialog, FORM_CLASS):
         # #widgets-and-dialogs-with-auto-connect
         self.setupUi(self)
         self.dbConnectionString=None
+        self.setFixedSize(self.frameSize())
     def keyPressEvent(self, event):
         if event.key() == Qt.Key_Escape:
             pass
