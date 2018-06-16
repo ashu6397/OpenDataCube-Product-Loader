@@ -1,4 +1,4 @@
-# OpenDataCube-Product-Loader 
+# OpenDataCube Product Loader 
 
 ## Installation
 
