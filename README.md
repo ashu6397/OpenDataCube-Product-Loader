@@ -1,5 +1,7 @@
 # OpenDataCube-Product-Loader 
 
+## Installation
+
 ## Overview
 An experimental QGIS plugin that performs the three basic functions:
 * Visualize ingested data in datacube
@@ -52,8 +54,7 @@ Installation with `OSGeo4W`
     Note: You *may* need to install updated GDAL, numpy and pandas from the above site.
 
 
-Plugin
+#### Plugin
 ~~~~~~
-
 - Download the latest `release` of the plugin
 - Install the plugin in QGIS using `Plugins | Manage and Install Plugins... | Install from ZIP`
