@@ -8,16 +8,16 @@
                              -------------------
         begin                : 2018-05-06
         git sha              : $Format:%H$
-        copyright            : (C) 2018 by Ashu
+        copyright            : (C) 2018 by Ashutosh Vaish
         email                : ashutoshvaish6397@gmail.com
  ***************************************************************************/
 
 /***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
- *   it under the terms of the GNU General Public License as published by  *
- *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   *
+ *   it under the terms of the GNU General Public License v3.0 as published*
+ *   by the Free Software Foundation;                                      *
+ *                                                                         *
  *                                                                         *
  ***************************************************************************/
 """
@@ -26,6 +26,7 @@ import os
 
 from PyQt5 import uic
 from PyQt5 import QtWidgets
+from PyQt5.QtGui import QIcon
 
 FORM_CLASS, _ = uic.loadUiType(os.path.join(
     os.path.dirname(__file__), 'psql_conn.ui'))
@@ -42,3 +43,4 @@ class psqlConnection(QtWidgets.QDialog, FORM_CLASS):
         # #widgets-and-dialogs-with-auto-connect
         self.setupUi(self)
         self.setFixedSize(self.frameSize())
+        self.setWindowIcon(QIcon(":/plugins/OpenDataCube_Product_Loader/assets/icon.png"));
