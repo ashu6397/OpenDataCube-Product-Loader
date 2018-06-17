@@ -1,15 +1,15 @@
 # OpenDataCube Product Loader 
 
-## Installation
-
 ## Overview
 An experimental QGIS plugin that performs the three basic functions:
 * Visualize ingested data in datacube
 * Plot ingested data
 * Load ingested data in QGIS Map Interface as a Raster Layer
 
-## Documentation
-See the [readme.txt](https://github.com/ashu6397/OpenDataCube-Product-Loader/blob/master/opendatacubeproductloaderplugin/README.txt) for installation & usage of the plugin.
+![alt text](https://github.com/ashu6397/OpenDataCube-Product-Loader/blob/master/opendatacubeproductloaderplugin/assets/Plugin%20Dialog.PNG)
+
+## Usage
+Read this [document](https://github.com/ashu6397/OpenDataCube-Product-Loader/blob/master/opendatacubeproductloaderplugin/README.txt) for installation & usage of the plugin.
 
 ## Requirements
 
@@ -18,8 +18,10 @@ See the [readme.txt](https://github.com/ashu6397/OpenDataCube-Product-Loader/blo
 * datacube-core python package
 * A populated and running local `Open Data Cube` instance
 
-#### Linux
+## Installation
+Installation procedure is same as in [Data Cube Query Installation](http://datacube-qgis.readthedocs.io/en/latest/installation.html)
 
+#### Linux
 Installation with `pip`:
 
 - Install `QGIS` 3.0 via your distribution package manager
@@ -37,8 +39,6 @@ Installation with `conda`:
         $ qgis
 
 #### Windows
-
-
 Installation with `OSGeo4W`
 
 - Run `osgeo4w-setup-x86_64.exe` and select Advanced install
@@ -54,7 +54,16 @@ Installation with `OSGeo4W`
     Note: You *may* need to install updated GDAL, numpy and pandas from the above site.
 
 
-#### Plugin
-~~~~~~
+### Plugin
 - Download the latest `release` of the plugin
-- Install the plugin in QGIS using `Plugins | Manage and Install Plugins... | Install from ZIP
+- Install the plugin in QGIS using `Plugins | Manage and Install Plugins... | Install from ZIP`
+
+
+## Links
+- [PostgreSql](https://www.postgresql.org/download/)
+- [OpenDataCube Project](https://github.com/opendatacube)
+- [OpenDataCube (Data Cube Query)](https://github.com/opendatacube/datacube-qgis)
+
+
+## License
+This plugin is licensed under GNU GPL v3.0. You can read the license [here](https://github.com/ashu6397/OpenDataCube-Product-Loader/blob/master/LICENSE)
