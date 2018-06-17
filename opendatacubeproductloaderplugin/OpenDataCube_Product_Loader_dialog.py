@@ -48,6 +48,8 @@ class OpenDataCubeProductLoaderDialog(QtWidgets.QDialog, FORM_CLASS):
         self.setupUi(self)
         self.dbConnectionString=None
         self.setFixedSize(self.frameSize())
+        self.setWindowIcon(QIcon(":/plugins/OpenDataCube_Product_Loader/assets/icon.png"));
+        
     def keyPressEvent(self, event):
         if event.key() == Qt.Key_Escape:
             pass
