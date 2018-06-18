@@ -57,7 +57,7 @@ Installation with `OSGeo4W`
 
 
 ## Usage
-Read this [document](https://github.com/ashu6397/OpenDataCube-Product-Loader/blob/master/opendatacubeproductloaderplugin/README.txt) for installation & usage of the plugin.
+Read this [document](https://github.com/ashu6397/OpenDataCube-Product-Loader/blob/master/opendatacubeproductloaderplugin/README.txt) for usage of the plugin.
 
 
 ## Links
