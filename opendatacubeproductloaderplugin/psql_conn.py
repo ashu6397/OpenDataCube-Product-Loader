@@ -43,4 +43,4 @@ class psqlConnection(QtWidgets.QDialog, FORM_CLASS):
         # #widgets-and-dialogs-with-auto-connect
         self.setupUi(self)
         self.setFixedSize(self.frameSize())
-        self.setWindowIcon(QIcon(":/plugins/OpenDataCube_Product_Loader/assets/icon.png"));
+        self.setWindowIcon(QIcon(":/plugins/OpenDataCube_Product_Loader/assets/icon.png"))
