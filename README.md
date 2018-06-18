@@ -8,9 +8,6 @@ An experimental QGIS plugin that performs the three basic functions:
 
 ![alt text](https://github.com/ashu6397/OpenDataCube-Product-Loader/blob/master/opendatacubeproductloaderplugin/assets/Plugin%20Dialog.PNG)
 
-## Usage
-Read this [document](https://github.com/ashu6397/OpenDataCube-Product-Loader/blob/master/opendatacubeproductloaderplugin/README.txt) for installation & usage of the plugin.
-
 ## Requirements
 
 ### System
@@ -57,6 +54,10 @@ Installation with `OSGeo4W`
 ### Plugin
 - Download the latest `release` of the plugin
 - Install the plugin in QGIS using `Plugins | Manage and Install Plugins... | Install from ZIP`
+
+
+## Usage
+Read this [document](https://github.com/ashu6397/OpenDataCube-Product-Loader/blob/master/opendatacubeproductloaderplugin/README.txt) for installation & usage of the plugin.
 
 
 ## Links
