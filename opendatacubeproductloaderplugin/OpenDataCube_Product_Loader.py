@@ -42,7 +42,7 @@ from .psql_conn import psqlConnection
 import os.path
 import pandas as pd
 import psycopg2
-
+from rasterio.errors import RasterioIOError
 class OpenDataCubeProductLoader:
     """QGIS Plugin Implementation."""
 
@@ -80,6 +80,7 @@ class OpenDataCubeProductLoader:
         self.psqlConnectionDlg.setModal(True)
         self.dataDisplayDlg.lld = self.loadLayerDialog
         self.dataDisplayDlg.pConn = self.psqlConnectionDlg
+        self.dataDisplayDlg.dbConnectionString=None
 
         # Declare instance attributes
         self.actions = []
@@ -98,8 +99,8 @@ class OpenDataCubeProductLoader:
         self.dataDisplayDlg.mQgsProjectionSelectionWidget.setNotSetText('Use default projection')
 
         # Create slots for dialog signals
-        self.dataDisplayDlg.conDbServer.clicked.connect(lambda:self.dataDisplayDlg.checkDatabaseConnection(self.psqlConnectionDlg))
-        self.psqlConnectionDlg.accepted.clicked.connect(lambda:self.dataDisplayDlg.createDatabaseConnection(self.psqlConnectionDlg))
+        self.dataDisplayDlg.conDbServer.clicked.connect(lambda:self.psqlConnectionDlg.checkDatabaseConnection(self.dataDisplayDlg))
+        self.psqlConnectionDlg.accepted.clicked.connect(lambda:self.psqlConnectionDlg.createDatabaseConnection(self.dataDisplayDlg))
         self.psqlConnectionDlg.ignored.clicked.connect(self.psqlConnectionDlg.close)
         self.dataDisplayDlg.plotData.clicked.connect(self.plotDatasets)
         self.dataDisplayDlg.datasetGeotiff.clicked.connect(self.array2raster)
@@ -285,7 +286,7 @@ class OpenDataCubeProductLoader:
                         self.dataDisplayDlg.progressBar.setValue(percent)
                     py.show()
                     self.dataDisplayDlg.appendLogs('Data plotted successfully')
-                except KeyError:
+                except (KeyError,RasterioIOError):
                     self.dataDisplayDlg.appendLogs('No dataset found for product:'+keys)
                     pass
                 except (ValueError,RuntimeError,TypeError) as e:
@@ -342,7 +343,7 @@ class OpenDataCubeProductLoader:
                 res1=float(resolution[:resolution.find(',')])
                 res2=float(resolution[resolution.find(',')+1:])
                 resolution=(res1,res2)
-                time=(startDate,endDate)
+                timeframe=(startDate,endDate)
 
             
             dc=self.dataDisplayDlg.dc
@@ -350,7 +351,7 @@ class OpenDataCubeProductLoader:
             self.dataDisplayDlg.progressBar.setValue(0)
             for keys in productList:
                 try:
-                    var=dc.load(product=keys,resolution=resolution, x=xMinMax,y=yMinMax,time=time)
+                    var=dc.load(product=keys,resolution=resolution, x=xMinMax,y=yMinMax,time=timeframe)
                     if len(var) !=0:
                         timesets=var.time.data
                         i=0
@@ -398,7 +399,7 @@ class OpenDataCubeProductLoader:
                                 self.loadRaster(newRasterfn)
                     else:
                         raise IndexError
-                except (KeyError,IndexError):
+                except (KeyError,IndexError,RasterioIOError):
                     self.dataDisplayDlg.appendLogs('No dataset found for: '+keys)
                 except RuntimeError as e:
                     self.dataDisplayDlg.appendLogs(e)
