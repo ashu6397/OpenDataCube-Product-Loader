@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>260</width>
-    <height>189</height>
+    <height>230</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -81,7 +81,7 @@
    <property name="geometry">
     <rect>
      <x>140</x>
-     <y>160</y>
+     <y>200</y>
      <width>75</width>
      <height>23</height>
     </rect>
@@ -142,7 +142,7 @@
    <property name="geometry">
     <rect>
      <x>50</x>
-     <y>160</y>
+     <y>200</y>
      <width>75</width>
      <height>23</height>
     </rect>
@@ -179,6 +179,59 @@
     </rect>
    </property>
   </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>160</y>
+     <width>50</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>SSL Mode</string>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="sslComboBox">
+   <property name="geometry">
+    <rect>
+     <x>80</x>
+     <y>160</y>
+     <width>170</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <item>
+    <property name="text">
+     <string>disable</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>allow</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>prefer</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>require</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>verify-ca	</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>verify-full</string>
+    </property>
+   </item>
+  </widget>
  </widget>
  <customwidgets>
   <customwidget>
@@ -193,6 +246,7 @@
   <tabstop>dbText</tabstop>
   <tabstop>userText</tabstop>
   <tabstop>passText</tabstop>
+  <tabstop>sslComboBox</tabstop>
   <tabstop>accepted</tabstop>
   <tabstop>ignored</tabstop>
  </tabstops>
