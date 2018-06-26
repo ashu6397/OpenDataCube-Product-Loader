@@ -27,13 +27,12 @@ from PyQt5 import uic
 from PyQt5 import QtWidgets
 import qgis
 from PyQt5.QtGui import *
-from PyQt5.QtCore import Qt,pyqtSlot
+from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QAction,QMessageBox,QTreeWidget,QTreeWidgetItem
 
 FORM_CLASS, _ = uic.loadUiType(os.path.join(
     os.path.dirname(__file__), 'OpenDataCube_Product_Loader_dialog_base.ui'))
 import time
-import psycopg2
 import datacube
 
 class OpenDataCubeProductLoaderDialog(QtWidgets.QDialog, FORM_CLASS):
@@ -46,7 +45,6 @@ class OpenDataCubeProductLoaderDialog(QtWidgets.QDialog, FORM_CLASS):
         # http://qt-project.org/doc/qt-4.8/designer-using-a-ui-file.html
         # #widgets-and-dialogs-with-auto-connect
         self.setupUi(self)
-        self.dbConnectionString=None
         self.setFixedSize(self.frameSize())
         self.setWindowIcon(QIcon(":/plugins/OpenDataCube_Product_Loader/assets/icon.png"))
         
@@ -62,7 +60,7 @@ class OpenDataCubeProductLoaderDialog(QtWidgets.QDialog, FORM_CLASS):
             self.pConn.close()
             self.lld.close()
             if self.dbConnectionString is not None: 
-                self.dbConnectionString.close()
+                del self.dbConnectionString
         else:
             event.ignore()
 
@@ -133,36 +131,6 @@ class OpenDataCubeProductLoaderDialog(QtWidgets.QDialog, FORM_CLASS):
             self.dc=dc
         except datacube.index.postgres._connections.IndexSetupError:
             self.appendLogs('No DB schema exists. Have you run init? datacube system init')
-
-    def checkDatabaseConnection(self,dialog):
-        if self.conDbServer.isChecked() and self.dbConnectionString != None:
-            self.conDbServer.setText('Connect Database Server')
-            self.dbConnectionString.close()
-            self.treeProductInfo.clear()
-            self.treeProductInfo_2.clear()
-            self.appendLogs('Database Connection Closed')
-        else:
-            dialog.show()
-
-    def createDatabaseConnection(self,dialog):
-        host=dialog.hostText.text()
-        port=dialog.portText.text()
-        username=dialog.userText.text()
-        password=dialog.passText.text()
-        database=dialog.dbText.text()   
-        try:
-            if host is '' or port is '' or username is '' or database is '':
-                QMessageBox.information(None, "Warning:", str('Some required fields are missing. Please complete the form'))  
-            else:
-                self.dbConnectionString=psycopg2.connect(database=database, user=username, password=password, host=host, port=port)
-                self.appendLogs(self.dbConnectionString.dsn)
-                self.conDbServer.setText('Disconnect Database Server')
-                self.listProducts()
-                self.showIngestedDataProductList()
-                dialog.close()
-        except psycopg2.Error as e:
-            self.dbConnectionString=None
-            self.appendLogs(e)  
 
     def listCheckedProducts(self):
         checked = dict()
