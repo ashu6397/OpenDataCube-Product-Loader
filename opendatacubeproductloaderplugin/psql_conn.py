@@ -28,6 +28,8 @@ from PyQt5 import uic
 from PyQt5 import QtWidgets
 from PyQt5.QtGui import QIcon
 
+import psycopg2
+
 FORM_CLASS, _ = uic.loadUiType(os.path.join(
     os.path.dirname(__file__), 'psql_conn.ui'))
 
@@ -44,3 +46,35 @@ class psqlConnection(QtWidgets.QDialog, FORM_CLASS):
         self.setupUi(self)
         self.setFixedSize(self.frameSize())
         self.setWindowIcon(QIcon(":/plugins/OpenDataCube_Product_Loader/assets/icon.png"))
+
+    def createDatabaseConnection(self,dataDisplayDialog):
+        host = self.hostText.text()
+        port = self.portText.text()
+        username = self.userText.text()
+        password = self.passText.text()
+        database = self.dbText.text() 
+        sslmode = self.sslComboBox.currentText()  
+        try:
+            if host is '' or port is '' or username is '' or database is '':
+                QMessageBox.information(None, "Warning:", str('Some required fields are missing. Please complete the form'))  
+            else:
+                dataDisplayDialog.dbConnectionString=psycopg2.connect(database=database, user=username, password=password, host=host, port=port, sslmode=sslmode)
+                dataDisplayDialog.appendLogs(dataDisplayDialog.dbConnectionString.dsn)
+                dataDisplayDialog.conDbServer.setText('Disconnect Database Server')
+                dataDisplayDialog.listProducts()
+                dataDisplayDialog.showIngestedDataProductList()
+                self.close()
+        except psycopg2.Error as e:
+            dataDisplayDialog.dbConnectionString=None
+            dataDisplayDialog.appendLogs(e)  
+
+    def checkDatabaseConnection(self,dataDisplayDialog):
+        if dataDisplayDialog.conDbServer.isChecked() and dataDisplayDialog.dbConnectionString != None:
+            dataDisplayDialog.conDbServer.setText('Connect Database Server')
+            dataDisplayDialog.dbConnectionString.close()
+            dataDisplayDialog.treeProductInfo.clear()
+            dataDisplayDialog.treeProductInfo_2.clear()
+            dataDisplayDialog.appendLogs('Database Connection Closed')
+        else:
+            self.show()
+
